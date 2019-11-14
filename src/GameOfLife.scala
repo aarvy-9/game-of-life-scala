@@ -14,7 +14,7 @@ object GameOfLife{
 	}
 	
 	def generateSignalsForAllLiveCells(liveCells: List[(Int, Int)]) = {
-	  liveCells.map(generateSignals).reduce((list1, list2) => List1 ::: List2)
+	  liveCells.map(generateSignals).reduce((list1, list2) => list1 ::: list2)
 	  //Feedback: what does x and y mean here?
 	}
 	
@@ -28,15 +28,6 @@ object GameOfLife{
 	  signalCount.filter{ 
 	    case (cell, count) => isAlive(liveCells.contains(cell), count)
 	  }.keys.toList
-	}
-	
-	def clearScreen = {
-	  val osName = System.getProperty("os.name").toLowerCase();
-	  if(osName.contains("win")) {
-		Process("cls")
-	  } else {
-		Process("clear")
-	  }
 	}
 	
 	def display(liveCells: List[(Int, Int)]) = {
@@ -54,6 +45,7 @@ object GameOfLife{
 	
 	def main(args: Array[String]) {
       println("Game Of Life!")
+	  print("\u001b[2J")
     }
 	
 }
