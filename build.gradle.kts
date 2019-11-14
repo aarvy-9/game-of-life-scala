@@ -39,4 +39,4 @@ tasks.withType<ScalaCompile> {
   sourceCompatibility = "1.8"
 }
 
-defaultTasks("clean", "test")
+defaultTasks("clean", "test", "run")
