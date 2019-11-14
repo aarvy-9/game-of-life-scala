@@ -4,7 +4,7 @@ object GameOfLife{
 
 //Feedback: remove unnecessary ()
 	def isAlive(alive: Boolean, numberOfLiveNeighbors: Int) = {
-	  (alive && numberOfLiveNeighbors == 2) || numberOfLiveNeighbors == 3
+	  alive && numberOfLiveNeighbors == 2 || numberOfLiveNeighbors == 3
 	}
 	
 	def generateSignals(liveCell: (Int, Int)) = {
@@ -14,7 +14,7 @@ object GameOfLife{
 	}
 	
 	def generateSignalsForAllLiveCells(liveCells: List[(Int, Int)]) = {
-	  liveCells.map(generateSignals).reduce((x, y) => x ::: y)
+	  liveCells.map(generateSignals).reduce((list1, list2) => List1 ::: List2)
 	  //Feedback: what does x and y mean here?
 	}
 	
@@ -30,7 +30,7 @@ object GameOfLife{
 	  }.keys.toList
 	}
 	
-	def clearScreen() = {
+	def clearScreen = {
 	  val osName = System.getProperty("os.name").toLowerCase();
 	  if(osName.contains("win")) {
 		Process("cls")
