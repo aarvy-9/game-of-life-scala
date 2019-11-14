@@ -29,7 +29,6 @@ object GameOfLife{
 	}
 	
 	def clearScreen() = {
-	  println("Test")
 	  val osName = System.getProperty("os.name").toLowerCase();
 	  if(osName.contains("win")) {
 		Process("cls")
@@ -38,8 +37,21 @@ object GameOfLife{
 	  }
 	}
 	
+	def display(liveCells: List[(Int, Int)]) = {
+	  print("\u001b[2J") // to clear screen
+	  println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+	  val x = for (e <- liveCells) yield e._1
+	  val y = for (e <- liveCells) yield e._2
+	  val min_ = List(x.min, y.min).min
+	  val max_ = List(x.max, y.max).max
+	  for(i <- min_ to max_ + 1){
+	    println((for(j <- min_ to max_ + 1) yield {if(liveCells.contains((i, j))){'X'} else{' '} }).mkString(""))  
+	  }
+	  Thread.sleep(1000)
+	}
+	
 	def main(args: Array[String]) {
-      println("Hello Scala !!")
+      println("Game Of Life!")
     }
 	
 }
