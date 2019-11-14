@@ -2,6 +2,7 @@ import scala.sys.process._
 
 object GameOfLife{ 
 
+//Feedback: remove unnecessary ()
 	def isAlive(alive: Boolean, numberOfLiveNeighbors: Int) = {
 	  (alive && numberOfLiveNeighbors == 2) || numberOfLiveNeighbors == 3
 	}
@@ -14,6 +15,7 @@ object GameOfLife{
 	
 	def generateSignalsForAllLiveCells(liveCells: List[(Int, Int)]) = {
 	  liveCells.map(generateSignals).reduce((x, y) => x ::: y)
+	  //Feedback: what does x and y mean here?
 	}
 	
 	def countSignals(signals: List[(Int, Int)]) = {
