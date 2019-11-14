@@ -1,5 +1,10 @@
 plugins {
   scala
+  application
+}
+
+application {
+    mainClassName = "GameOfLife"
 }
 
 repositories {
