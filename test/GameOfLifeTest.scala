@@ -97,24 +97,62 @@ class GameOfLifeTest extends FunSuite {
 	  val signals = List()
 	  val actualResult = Map()
 	  val expectedResult = GameOfLife.countSignals(signals)
+	  assert(actualResult == expectedResult)
 	}
 	
 	test("Count Signals 1") {
 	  val signals = List((1, 2))
 	  val actualResult = Map((1, 2) -> 1)
 	  val expectedResult = GameOfLife.countSignals(signals)
+	  assert(actualResult == expectedResult)
 	}
 	
 	test("Count Signals 2 at same position") {
 	  val signals = List((1, 2), (1, 2))
 	  val actualResult = Map((1, 2) -> 2)
 	  val expectedResult = GameOfLife.countSignals(signals)
+	  assert(actualResult == expectedResult)
 	}
 	
 	test("Count Signals 3 with 2 at same position") {
 	  val signals = List((1, 2), (2, 1), (1, 2))
 	  val actualResult = Map((1, 2) -> 2, (2, 1) -> 1)
 	  val expectedResult = GameOfLife.countSignals(signals)
+	  assert(actualResult == expectedResult)
 	}
 	
+	test("Next Generation with single live cell") {
+	  val liveCells = List((0, 0))
+	  val actualResult = List()
+	  val expectedResult = GameOfLife.nextGeneration(liveCells)
+	  assert(actualResult == expectedResult)
+	}
+	
+	test("Next Generation with two live cell") {
+	  val liveCells = List((0, 0), (0, 1))
+	  val actualResult = List()
+	  val expectedResult = GameOfLife.nextGeneration(liveCells)
+	  assert(actualResult == expectedResult)
+	}
+	
+	test("Next Generation with block live cell") {
+	  val liveCells = List((0, 0), (0, 1), (1, 0), (1, 1))
+	  val actualResult = List((0, 0), (1, 1), (0, 1), (1, 0))
+	  val expectedResult = GameOfLife.nextGeneration(liveCells)
+	  assert(actualResult == expectedResult)
+	}
+	
+	test("Next Generation with horizontal blinker cell") {
+	  val liveCells = List((0, 0), (0, 1), (0, 2))
+	  val actualResult = List((1,1), (0,1), (-1,1))
+	  val expectedResult = GameOfLife.nextGeneration(liveCells)
+	  assert(actualResult == expectedResult)
+	}
+	
+	test("Next Generation with vertical blinker cell") {
+	  val liveCells = List((0, 1), (1, 1), (2, 1))
+	  val actualResult = List((1,1), (1,2), (1,0))
+	  val expectedResult = GameOfLife.nextGeneration(liveCells)
+	  assert(actualResult == expectedResult)
+	}
 }

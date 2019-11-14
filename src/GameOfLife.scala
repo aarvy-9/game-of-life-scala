@@ -17,4 +17,12 @@ object GameOfLife{
 	def countSignals(signals: List[(Int, Int)]) = {
 	  signals.groupBy(cell => cell).mapValues(_.length)
 	}
+	
+	def nextGeneration(liveCells: List[(Int, Int)]) = {
+	  val allLiveSignals = generateSignalsForAllLiveCells(liveCells)
+	  val signalCount = countSignals(allLiveSignals)
+	  signalCount.filter{ 
+	    case (cell, count) => isAlive(liveCells.contains(cell), count)
+	  }.keys.toList
+	}
 }
