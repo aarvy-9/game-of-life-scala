@@ -45,7 +45,11 @@ object GameOfLife{
 	
 	def main(args: Array[String]) {
       println("Game Of Life!")
-	  print("\u001b[2J")
+	  var liveCells = List((0, 1), (0, 2), (0, 3))
+	  while(true){
+        display(liveCells)
+        liveCells = nextGeneration(liveCells)  		
+	  }
     }
 	
 }
