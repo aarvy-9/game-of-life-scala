@@ -43,13 +43,14 @@ object GameOfLife{
 	  Thread.sleep(1000)
 	}
 	
+	def gameOfLife(liveCells: List[(Int, Int)]) : List[(Int, Int)] = {
+	  display(liveCells)
+	  nextGeneration(liveCells)
+	}
+	
 	def main(args: Array[String]) {
-      println("Game Of Life!")
-	  var liveCells = List((0, 1), (0, 2), (0, 3))
-	  while(true){
-        display(liveCells)
-        liveCells = nextGeneration(liveCells)  		
-	  }
+	  val liveCells = List((0, 1), (0, 2), (0, 3))
+	  Stream.from(1).foldLeft(liveCells) { (liveCells, e) => gameOfLife(liveCells) }	
     }
 	
 }
