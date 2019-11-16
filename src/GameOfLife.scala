@@ -2,7 +2,6 @@ import scala.sys.process._
 
 object GameOfLife{ 
 
-//Feedback: remove unnecessary ()
 	def isAlive(alive: Boolean, numberOfLiveNeighbors: Int) = {
 	  alive && numberOfLiveNeighbors == 2 || numberOfLiveNeighbors == 3
 	}
@@ -14,8 +13,7 @@ object GameOfLife{
 	}
 	
 	def generateSignalsForAllLiveCells(liveCells: List[(Int, Int)]) = {
-	  liveCells.map(generateSignals).reduce((list1, list2) => list1 ::: list2)
-	  //Feedback: what does x and y mean here?
+	  liveCells.map(generateSignals).reduce(_ ::: _)
 	}
 	
 	def countSignals(signals: List[(Int, Int)]) = {
@@ -31,12 +29,12 @@ object GameOfLife{
 	}
 	
 	def display(liveCells: List[(Int, Int)]) = {
-	  print("\u001b[2J") // to clear screen
+	  print("\u001b[2J")
 	  println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-	  val x = for (e <- liveCells) yield e._1
-	  val y = for (e <- liveCells) yield e._2
-	  val min_ = List(x.min, y.min).min
-	  val max_ = List(x.max, y.max).max
+	  val xAxis = for (e <- liveCells) yield e._1
+	  val yAxis = for (e <- liveCells) yield e._2
+	  val min_ = List(xAxis.min, yAxis.min).min
+	  val max_ = List(xAxis.max, yAxis.max).max
 	  for(i <- min_ to max_ + 1){
 	    println((for(j <- min_ to max_ + 1) yield {if(liveCells.contains((i, j))){'X'} else{' '} }).mkString(""))  
 	  }
@@ -49,7 +47,7 @@ object GameOfLife{
 	}
 	
 	def main(args: Array[String]) {
-	  val liveCells = List((0, 1), (0, 2), (0, 3))
+	  val liveCells = List((0, 1), (1, 1), (2, 1))
 	  Stream.from(1).foldLeft(liveCells) { (liveCells, e) => gameOfLife(liveCells) }	
     }
 	
