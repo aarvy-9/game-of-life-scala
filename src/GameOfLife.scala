@@ -1,7 +1,4 @@
-import scala.sys.process._
-
 object GameOfLife{ 
-
 	def isAlive(alive: Boolean, numberOfLiveNeighbors: Int) = {
 	  alive && numberOfLiveNeighbors == 2 || numberOfLiveNeighbors == 3
 	}
@@ -36,7 +33,9 @@ object GameOfLife{
 	  val min_ = List(xAxis.min, yAxis.min).min
 	  val max_ = List(xAxis.max, yAxis.max).max
 	  for(i <- min_ to max_ + 1){
-	    println((for(j <- min_ to max_ + 1) yield {if(liveCells.contains((i, j))){'X'} else{' '} }).mkString(""))  
+	    println((for(j <- min_ to max_ + 1) yield {
+		  if(liveCells.contains((i, j))){'X'} else{' '} 
+		  }).mkString(""))  
 	  }
 	  Thread.sleep(1000)
 	}
@@ -50,5 +49,4 @@ object GameOfLife{
 	  val liveCells = List((0, 1), (1, 1), (2, 1))
 	  Stream.from(1).foldLeft(liveCells) { (liveCells, e) => gameOfLife(liveCells) }	
     }
-	
 }
